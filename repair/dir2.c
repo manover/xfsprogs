@@ -340,7 +340,7 @@ _("bad record count in inode %" PRIu64 ", count = %d, max = %d\n"), da_cursor->i
 		 */
 		if (i == -1) {
 			i = da_cursor->active = be16_to_cpu(node->hdr.level);
-			if (i >= XFS_DA_NODE_MAXDEPTH) {
+			if (i < 1 || i >= XFS_DA_NODE_MAXDEPTH) {
 				do_warn(
 _("bad header depth for directory inode %" PRIu64 "\n"),
 					da_cursor->ino);
