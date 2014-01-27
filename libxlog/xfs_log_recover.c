@@ -905,7 +905,8 @@ xlog_find_zeroed(
 		 * not looking at a log... Bail out.
 		 */
 		xlog_warn("XFS: Log inconsistent or not a log (last==0, first!=1)");
-		return XFS_ERROR(EINVAL);
+		error = XFS_ERROR(EINVAL);
+		goto bp_err;
 	}
 
 	/* we have a partially zeroed log */
