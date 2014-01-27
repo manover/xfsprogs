@@ -152,7 +152,6 @@ typedef struct xfs_mount {
 	uint			m_rsumsize;	/* size of rt summary, bytes */
 	struct xfs_inode	*m_rbmip;	/* pointer to bitmap inode */
 	struct xfs_inode	*m_rsumip;	/* pointer to summary inode */
-	struct xfs_inode	*m_rootip;	/* pointer to root directory */
 	dev_t			m_dev;
 	dev_t			m_logdev;
 	dev_t			m_rtdev;
@@ -200,12 +199,11 @@ typedef struct xfs_mount {
 	xfs_dablk_t		m_dirfreeblk;	/* blockno of dirfreeindex v2 */
 } xfs_mount_t;
 
-#define LIBXFS_MOUNT_ROOTINOS		0x0001
-#define LIBXFS_MOUNT_DEBUGGER		0x0002
-#define LIBXFS_MOUNT_32BITINODES	0x0004
-#define LIBXFS_MOUNT_32BITINOOPT	0x0008
-#define LIBXFS_MOUNT_COMPAT_ATTR	0x0010
-#define LIBXFS_MOUNT_ATTR2		0x0020
+#define LIBXFS_MOUNT_DEBUGGER		0x0001
+#define LIBXFS_MOUNT_32BITINODES	0x0002
+#define LIBXFS_MOUNT_32BITINOOPT	0x0004
+#define LIBXFS_MOUNT_COMPAT_ATTR	0x0008
+#define LIBXFS_MOUNT_ATTR2		0x0010
 
 #define LIBXFS_IHASHSIZE(sbp)		(1<<10)
 #define LIBXFS_BHASHSIZE(sbp) 		(1<<10)

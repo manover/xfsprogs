@@ -2445,6 +2445,7 @@ an AG size that is one stripe unit smaller, for example %llu.\n"),
 	memset(XFS_BUF_PTR(buf), 0, sectorsize);
 	libxfs_sb_to_disk((void *)XFS_BUF_PTR(buf), sbp, XFS_SB_ALL_BITS);
 	libxfs_writebuf(buf, LIBXFS_EXIT_ON_FAILURE);
+	libxfs_purgebuf(buf);
 
 	/*
 	 * If the data area is a file, then grow it out to its final size
@@ -2480,7 +2481,7 @@ an AG size that is one stripe unit smaller, for example %llu.\n"),
 			(xfs_extlen_t)XFS_FSB_TO_BB(mp, logblocks),
 			&sbp->sb_uuid, logversion, lsunit, XLOG_FMT);
 
-	mp = libxfs_mount(mp, sbp, xi.ddev, xi.logdev, xi.rtdev, 1);
+	mp = libxfs_mount(mp, sbp, xi.ddev, xi.logdev, xi.rtdev, 0);
 	if (mp == NULL) {
 		fprintf(stderr, _("%s: filesystem failed to initialize\n"),
 			progname);
@@ -2704,7 +2705,6 @@ an AG size that is one stripe unit smaller, for example %llu.\n"),
 	/*
 	 * Allocate the root inode and anything else in the proto file.
 	 */
-	mp->m_rootip = NULL;
 	parse_proto(mp, &fsx, &protostring);
 
 	/*
