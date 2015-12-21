@@ -143,7 +143,7 @@ find_secondary_sb(xfs_sb_t *rsb)
 			if (verify_sb(c_bufsb, &bufsb, 0) != XR_OK)
 				continue;
 
-			do_warn(_("found candidate secondary superblock...\n"));
+			do_warn(_("found candidate secondary superblock, off = %" PRId64 "...\n"), off);
 
 			/*
 			 * found one.  now verify it by looking
